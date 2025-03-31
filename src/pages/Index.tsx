@@ -93,7 +93,7 @@ const Index = () => {
         <h1 className="text-3xl font-bold mb-6">Score Cards</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ScoreCard 
-            className="border-none shadow-lg rounded-2xl" 
+            className="rounded-2xl" 
             title="CoreScore Daily Progress"
             target={58}
             data={coreData}
@@ -101,10 +101,11 @@ const Index = () => {
             icon={coreIcon}
             fillColor="#86CFBD"
             analyticsColor="#16a34a"
+            tags={["Fill", "Hug"]}
           />
           
           <ScoreCard 
-            className="border-none shadow-lg rounded-2xl" 
+            className="rounded-2xl" 
             title="Sleep Score Daily Progress"
             target={32}
             data={sleepData}
@@ -112,10 +113,11 @@ const Index = () => {
             icon={sleepIcon}
             fillColor="#93C5FD"
             analyticsColor="#3B82F6"
+            tags={["Deep", "REM"]}
           />
           
           <ScoreCard 
-            className="border-none shadow-lg rounded-2xl" 
+            className="rounded-2xl" 
             title="Activity Score Daily Progress"
             target={28}
             data={activityData}
@@ -123,10 +125,11 @@ const Index = () => {
             icon={activityIcon}
             fillColor="#A78BFA"
             analyticsColor="#8B5CF6"
+            tags={["Steps", "Cardio"]}
           />
           
           <ScoreCard 
-            className="border-none shadow-lg rounded-2xl" 
+            className="rounded-2xl" 
             title="Calm Score Daily Progress"
             target={35}
             data={calmData}
@@ -134,6 +137,7 @@ const Index = () => {
             icon={calmIcon}
             fillColor="#F9A8D4"
             analyticsColor="#EC4899"
+            tags={["Relax", "Focus"]}
           />
         </div>
       </div>

@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ScoreChart from "./ScoreChart";
 import { CheckCircle } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export interface ScoreCardData {
   day: string;
@@ -20,6 +21,7 @@ export interface ScoreCardProps {
   icon?: React.ReactNode;
   fillColor: string; // Color for the filled portion of bars
   analyticsColor?: string; // Color for the analytics text and icon
+  tags?: string[]; // Tags to display below the chart
 }
 
 const ScoreCard: React.FC<ScoreCardProps> = ({ 
@@ -30,28 +32,35 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
   lastUpdated,
   icon,
   fillColor, 
-  analyticsColor = "#16a34a" // Default emerald-600
+  analyticsColor = "#16a34a", // Default emerald-600
+  tags = []
 }) => {
   return (
-    <Card className={className}>
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
+    <Card className={`overflow-hidden shadow-md ${className}`}>
+      <CardHeader className="flex flex-row items-center justify-between pb-2 border-b">
         <div className="flex items-center gap-3">
-          <div className="bg-opacity-20 p-2 rounded-md" style={{ backgroundColor: `${fillColor}40` }}>
+          <div 
+            className="bg-opacity-20 p-2 rounded-full" 
+            style={{ backgroundColor: `${fillColor}20` }}
+          >
             {icon}
           </div>
-          <h3 className="text-2xl font-semibold">{title}</h3>
+          <h3 className="text-lg font-semibold">{title}</h3>
         </div>
-        <div className="flex items-center gap-1 font-medium" style={{ color: analyticsColor }}>
+        <div className="flex items-center gap-1 font-medium text-sm" style={{ color: analyticsColor }}>
           <span>Analytics</span>
-          <CheckCircle size={18} />
+          <CheckCircle size={16} />
         </div>
       </CardHeader>
-      <CardContent>
-        <ScoreChart data={data} target={target} fillColor={fillColor} />
-        <div className="flex justify-between items-center text-sm mt-2">
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold">Target</span>
-          </div>
+      <CardContent className="pt-4">
+        <ScoreChart 
+          data={data} 
+          target={target} 
+          fillColor={fillColor}
+          tags={tags} 
+        />
+        <Separator className="my-3" />
+        <div className="flex justify-end items-center text-sm">
           <div className="text-gray-500">
             Updated {lastUpdated}
           </div>

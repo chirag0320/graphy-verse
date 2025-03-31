@@ -10,12 +10,14 @@ import {
 } from "recharts";
 import { cn } from "@/lib/utils";
 import { ScoreCardData } from "./ScoreCard";
+import { Button } from "@/components/ui/button";
 
 interface ScoreChartProps {
   data: ScoreCardData[];
   target: number;
   className?: string;
   fillColor: string;
+  tags?: string[];
 }
 
 const ScoreChart: React.FC<ScoreChartProps> = ({
@@ -23,6 +25,7 @@ const ScoreChart: React.FC<ScoreChartProps> = ({
   target,
   className,
   fillColor,
+  tags = [],
 }) => {
   // Custom shape for our pill-shaped bars
   const PillBar = (props: any) => {
@@ -114,6 +117,25 @@ const ScoreChart: React.FC<ScoreChartProps> = ({
               />
             </BarChart>
           </ResponsiveContainer>
+        </div>
+      </div>
+      <div className="flex justify-between items-center text-sm mt-2">
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-semibold">Target</span>
+          {tags.map((tag, index) => (
+            <Button 
+              key={index} 
+              variant="outline" 
+              className="h-7 px-3 py-0 rounded-full text-xs font-medium bg-opacity-20"
+              style={{ 
+                backgroundColor: `${fillColor}20`, 
+                color: fillColor,
+                borderColor: `${fillColor}40`
+              }}
+            >
+              {tag}
+            </Button>
+          ))}
         </div>
       </div>
     </div>
